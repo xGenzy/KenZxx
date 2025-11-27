@@ -1,2 +1,0 @@
-# KenZxx
-No allowed 
