@@ -10,7 +10,9 @@ const dependencies = [
   "cheerio", 
   "file-type",
   "moment-timezone",
-  "form-data" 
+  "form-data",
+  "ffmpeg-static",  
+  "yt-dlp-exec"     
 ];
 
 const { execSync } = require("child_process");
@@ -50,6 +52,8 @@ const ffmpeg = require('fluent-ffmpeg');
 const FormData = require('form-data');
 const fileType = require("file-type");
 const moment = require("moment-timezone");
+const ffmpegPath = require('ffmpeg-static');
+const YTDlp = require('yt-dlp-exec');
 
 const IG_USERNAME = 'tiger.4148083'; 
 const IG_PASSWORD = '#Dimas094';
