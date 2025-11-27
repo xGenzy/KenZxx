@@ -824,10 +824,10 @@ if (['menu', '.menu', 'help', 'start', 'hi'].includes(cmd)) {
     const menuText = `
 ╭───「 🇮🇩 *KENZO - BOT* 」
 │
-│ 👋 *Hallo, Selamat ${greeting}*
+│ 👋 *Selamat ${greeting}*
 │
 │ 👤 *Nama*   : ${pushName}
-│ 📅 *Tanggal* :${dateWib}
+│ 📅 *Tanggal* : ${dateWib}
 │ ⌚ *Jam* : ${timeWib} WIB
 ╰─────────────────────
 
@@ -836,7 +836,7 @@ if (['menu', '.menu', 'help', 'start', 'hi'].includes(cmd)) {
 │ ◦ *YouTube*
 │ ◦ *Instagram* 
 │ ◦ *Facebook* 
-│ ◦ *X/Twitter* 
+│ ◦ *Twitter* 
 ╰─────────────────────
 
 ╭──「 *🎵 CONVERTER* 」
