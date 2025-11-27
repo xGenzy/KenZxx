@@ -9,6 +9,7 @@ const dependencies = [
   "instagram-private-api",
   "cheerio", 
   "file-type",
+  "moment-timezone",
   "form-data" 
 ];
 
@@ -48,6 +49,7 @@ const { IgApiClient } = require('instagram-private-api');
 const ffmpeg = require('fluent-ffmpeg');
 const FormData = require('form-data');
 const fileType = require("file-type");
+const moment = require("moment-timezone");
 
 const IG_USERNAME = 'tiger.4148083'; 
 const IG_PASSWORD = '#Dimas094';
