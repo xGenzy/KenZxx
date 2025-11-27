@@ -19,7 +19,7 @@ COPY package*.json ./
 
 # 4. Install Dependensi Node.js
 # --omit=dev agar lebih ringan
-RUN npm install
+RUN node wabot.js
 
 # 5. Copy Semua Kode Bot
 COPY . .
