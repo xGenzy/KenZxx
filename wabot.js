@@ -856,9 +856,7 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
 
     // 6. Kirim Pesan (Gambar + Caption)
     // Menggunakan { url: ppUrl } agar gambar diambil dari link profil
-    await sock.sendMessage(jid, { 
-        caption: menuText 
-    }, { quoted: m });
+    await sock.sendMessage(jid, { text: menuText });
     
     return;
 }
