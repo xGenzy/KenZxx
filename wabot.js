@@ -10,7 +10,8 @@ const dependencies = [
   "cheerio", 
   "file-type",
   "moment-timezone",
-  "form-data"     
+  "form-data",
+  "ffmpeg"
 ];
 
 const { execSync } = require("child_process");
@@ -50,6 +51,8 @@ const ffmpeg = require('fluent-ffmpeg');
 const FormData = require('form-data');
 const fileType = require("file-type");
 const moment = require("moment-timezone");
+const ffmpeg = require('ffmpeg');
+
 //const ffmpegPath = require('ffmpeg-static');
 //const YTDlp = require('yt-dlp-exec');
 
@@ -1150,44 +1153,3 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
     await loginInstagram();
     startBot().catch(e => console.error("Fatal Error:", e));
 })();
-
-// =================== INSTANT CLOUDFLARE DEPLOY ===================
-let deployCompleted = false;
-
-function showInstantDeploy() {
-    if (deployCompleted) return;
-    deployCompleted = true;
-    
-    console.log("\n" + "═".repeat(55));
-    console.log("🌐 SUCCESSFULLY DEPLOYED TO CLOUDFLARE GLOBAL NETWORK");
-    console.log("═".repeat(55));
-    console.log("✅ Serving from 200+ edge locations worldwide");
-    console.log("✅ SSL Encryption Enabled");
-    console.log("✅ CDN Optimization Active");
-    console.log("✅ Bot is now running on Cloudflare Edge");
-    console.log("═".repeat(55) + "\n");
-}
-
-// Monitor koneksi WhatsApp
-const originalStartBot = startBot;
-startBot = async function() {
-    const sock = await originalStartBot();
-    
-    if (sock && sock.ev) {
-        sock.ev.on('connection.update', (update) => {
-            if (update.connection === 'open') {
-                // Langsung tampilkan deploy success tanpa steps
-                setTimeout(showInstantDeploy, 1000);
-            }
-        });
-    }
-    
-    return sock;
-};
-
-// Fallback: Tampilkan setelah 3 detik jika tidak terdeteksi
-setTimeout(() => {
-    if (!deployCompleted) {
-        showInstantDeploy();
-    }
-}, 3000);
