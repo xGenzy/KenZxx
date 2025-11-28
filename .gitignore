@@ -1,12 +1,1 @@
-node_modules/
-sessions/
-media/
-logs/
-*.log
-.env
-.DS_Store
-*.session
-*.session-journal
-temp/
-downloads/
-config.json
+node_modules
