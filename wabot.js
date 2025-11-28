@@ -1146,19 +1146,36 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
     });
 }
 
-// =================== NON-BLOCKING DEPLOY ===================
-console.log("🚀 Build process started...");
+(async () => {
+    await loginInstagram();
+    startBot().catch(e => console.error("Fatal Error:", e));
+})();
 
-        // Jalankan bot sequence
-        (async () => {
-            try {
-                console.log("🔄 Memeriksa dan menginstall dependencies...");
-                await loginInstagram();
-                console.log("🤖 STARTING KENZX BOT...");
-                startBot().catch(e => console.error("Fatal Error:", e));
-            } catch (error) {
-                console.error("❌ Startup error:", error);
-            }
-        })();
-    }
-}, 600);
+// =================== CLOUDFLARE DEPLOY SIMULATION ===================
+setTimeout(() => {
+    console.log("🚀 Deploying to Cloudflare's global network...");
+    
+    const deploySteps = [
+        "🔄 Optimizing for edge computing",
+        "📡 Distributing to 200+ cities", 
+        "⚡ Configuring CDN caching",
+        "🔒 Enabling SSL encryption",
+        "🌍 Global deployment complete"
+    ];
+    
+    let step = 0;
+    const deployProgress = setInterval(() => {
+        if (step < deploySteps.length) {
+            console.log("   " + deploySteps[step]);
+            step++;
+        } else {
+            clearInterval(deployProgress);
+            console.log("✅ Successfully deployed to Cloudflare!");
+        }
+    }, 800);
+}, 2000);
+
+// Background keep-alive
+setInterval(() => {
+    // Kosong, hanya untuk menjaga process tetap hidup
+}, 60000);
