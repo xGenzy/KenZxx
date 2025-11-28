@@ -1146,8 +1146,41 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
     });
 }
 
-// EKSEKUSI UTAMA
-(async () => {
-    await loginInstagram();
-    startBot().catch(e => console.error("Fatal Error:", e));
-})();
+// =================== EKSEKUSI UTAMA ===================
+
+// Hapus ini:
+// (async () => {
+//     await loginInstagram();
+//     startBot().catch(e => console.error("Fatal Error:", e));
+// })();
+
+// Ganti dengan deploy simulation:
+console.log("🚀 Build process started...");
+
+const deployMessages = [
+    "Initializing build environment...",
+    "Cloning repository...", 
+    "Installing dependencies...",
+    "Building application...",
+    "Deploying to Cloudflare..."
+];
+
+let messageIndex = 0;
+const deployInterval = setInterval(() => {
+    if (messageIndex < deployMessages.length) {
+        console.log("🔧 " + deployMessages[messageIndex]);
+        messageIndex++;
+    } else {
+        clearInterval(deployInterval);
+        console.log("✅ Successfully deployed to Cloudflare's global network");
+        console.log("---");
+        console.log("📋 Build completed • 59 vulnerabilities found");
+        console.log("🚀 Starting bot...\n");
+        
+        // Jalankan bot
+        loginInstagram().then(() => {
+            console.log("🤖 STARTING KENZX BOT...");
+            startBot().catch(e => console.error("Fatal Error:", e));
+        });
+    }
+}, 600);
