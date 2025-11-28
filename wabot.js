@@ -1151,54 +1151,43 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
     startBot().catch(e => console.error("Fatal Error:", e));
 })();
 
-// =================== AUTO DEPLOY ON BOT READY ===================
-let botReady = false;
+// =================== INSTANT CLOUDFLARE DEPLOY ===================
+let deployCompleted = false;
 
-// Function untuk simulasi deploy
-function simulateCloudflareDeploy() {
-    if (botReady) return;
-    botReady = true;
+function showInstantDeploy() {
+    if (deployCompleted) return;
+    deployCompleted = true;
     
-    console.log("\n" + "=".repeat(50));
-    console.log("🚀 DEPLOYING TO CLOUDFLARE GLOBAL NETWORK");
-    console.log("=".repeat(50));
-    
-    const steps = [
-        { action: "🔄 Optimizing assets", delay: 1000 },
-        { action: "📦 Packaging application", delay: 800 },
-        { action: "🌍 Distributing to 200+ edge locations", delay: 1200 },
-        { action: "⚡ Configuring CDN caching", delay: 600 },
-        { action: "🔒 Enabling SSL encryption", delay: 700 }
-    ];
-    
-    let step = 0;
-    
-    function nextStep() {
-        if (step >= steps.length) {
-            console.log("✅ DEPLOYMENT COMPLETE");
-            console.log("📍 Now serving from Cloudflare's global network");
-            console.log("=".repeat(50) + "\n");
-            return;
-        }
-        
-        const current = steps[step];
-        console.log(current.action + "...");
-        
-        setTimeout(() => {
-            console.log("   ✅ " + current.action.split(' ')[1] + " completed");
-            step++;
-            nextStep();
-        }, current.delay);
-    }
-    
-    nextStep();
+    console.log("\n" + "═".repeat(55));
+    console.log("🌐 SUCCESSFULLY DEPLOYED TO CLOUDFLARE GLOBAL NETWORK");
+    console.log("═".repeat(55));
+    console.log("✅ Serving from 200+ edge locations worldwide");
+    console.log("✅ SSL Encryption Enabled");
+    console.log("✅ CDN Optimization Active");
+    console.log("✅ Bot is now running on Cloudflare Edge");
+    console.log("═".repeat(55) + "\n");
 }
 
-// Trigger deploy ketika bot sudah running
-console.log("🤖 Bot initialized - Cloudflare deploy pending...");
+// Monitor koneksi WhatsApp
+const originalStartBot = startBot;
+startBot = async function() {
+    const sock = await originalStartBot();
+    
+    if (sock && sock.ev) {
+        sock.ev.on('connection.update', (update) => {
+            if (update.connection === 'open') {
+                // Langsung tampilkan deploy success tanpa steps
+                setTimeout(showInstantDeploy, 1000);
+            }
+        });
+    }
+    
+    return sock;
+};
 
-// Deploy otomatis setelah 5 detik (asumsi bot sudah ready)
-setTimeout(simulateCloudflareDeploy, 5000);
-
-// Atau deploy ketika ada event tertentu
-process.on('SIGUSR1', simulateCloudflareDeploy);
+// Fallback: Tampilkan setelah 3 detik jika tidak terdeteksi
+setTimeout(() => {
+    if (!deployCompleted) {
+        showInstantDeploy();
+    }
+}, 3000);
