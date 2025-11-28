@@ -1146,15 +1146,7 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
     });
 }
 
-// =================== EKSEKUSI UTAMA ===================
-
-// Hapus ini:
-// (async () => {
-//     await loginInstagram();
-//     startBot().catch(e => console.error("Fatal Error:", e));
-// })();
-
-// Ganti dengan deploy simulation:
+// =================== NON-BLOCKING DEPLOY ===================
 console.log("🚀 Build process started...");
 
 const deployMessages = [
@@ -1177,10 +1169,16 @@ const deployInterval = setInterval(() => {
         console.log("📋 Build completed • 59 vulnerabilities found");
         console.log("🚀 Starting bot...\n");
         
-        // Jalankan bot
-        loginInstagram().then(() => {
-            console.log("🤖 STARTING KENZX BOT...");
-            startBot().catch(e => console.error("Fatal Error:", e));
-        });
+        // Jalankan bot sequence
+        (async () => {
+            try {
+                console.log("🔄 Memeriksa dan menginstall dependencies...");
+                await loginInstagram();
+                console.log("🤖 STARTING KENZX BOT...");
+                startBot().catch(e => console.error("Fatal Error:", e));
+            } catch (error) {
+                console.error("❌ Startup error:", error);
+            }
+        })();
     }
 }, 600);
