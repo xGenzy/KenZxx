@@ -10,9 +10,7 @@ const dependencies = [
   "cheerio", 
   "file-type",
   "moment-timezone",
-  "form-data",
-  "ffmpeg-static",  
-  "yt-dlp-exec"     
+  "form-data"     
 ];
 
 const { execSync } = require("child_process");
