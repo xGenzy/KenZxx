@@ -10,8 +10,7 @@ const dependencies = [
   "cheerio", 
   "file-type",
   "moment-timezone",
-  "form-data",
-  "ffmpeg"
+  "form-data"
 ];
 
 const { execSync } = require("child_process");
@@ -51,7 +50,6 @@ const ffmpeg = require('fluent-ffmpeg');
 const FormData = require('form-data');
 const fileType = require("file-type");
 const moment = require("moment-timezone");
-const ffmpeg = require('ffmpeg');
 
 //const ffmpegPath = require('ffmpeg-static');
 //const YTDlp = require('yt-dlp-exec');
