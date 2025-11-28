@@ -1149,26 +1149,6 @@ _Note: Jika bot tidak merespon, berarti server sedang sibuk/tidur._
 // =================== NON-BLOCKING DEPLOY ===================
 console.log("🚀 Build process started...");
 
-const deployMessages = [
-    "Initializing build environment...",
-    "Cloning repository...", 
-    "Installing dependencies...",
-    "Building application...",
-    "Deploying to Cloudflare..."
-];
-
-let messageIndex = 0;
-const deployInterval = setInterval(() => {
-    if (messageIndex < deployMessages.length) {
-        console.log("🔧 " + deployMessages[messageIndex]);
-        messageIndex++;
-    } else {
-        clearInterval(deployInterval);
-        console.log("✅ Successfully deployed to Cloudflare's global network");
-        console.log("---");
-        console.log("📋 Build completed • 59 vulnerabilities found");
-        console.log("🚀 Starting bot...\n");
-        
         // Jalankan bot sequence
         (async () => {
             try {
